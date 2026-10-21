@@ -1,0 +1,256 @@
+# ---------------------------------------------------------------------------
+# UK entry-level computational biology jobs: configuration
+#
+# Run `python -m jobsbot check` after editing employers to see which boards
+# respond and how many UK roles each one returns.
+# ---------------------------------------------------------------------------
+
+site:
+  title: Entry Level Computational Biology & Bioinformatics Jobs — UK
+  author: fatinataly
+  blog_name: bebioinformatician
+  blog_url: ""   # paste your blog address here, e.g. https://bebioinformatician.com
+  tagline: entry level computational biology, bioinformatics, biostatistics and biotech data science roles
+  intro: >-
+    Entry level and early career roles in bioinformatics, genomics, computational
+    biology and chemistry, biostatistics, and data science and machine learning at
+    UK biotech, pharma, research institutes and universities, plus graduate schemes,
+    placements, studentships and internships. Senior, staff, principal, lead, manager,
+    director and professor titles are left out.
+
+# Drop roles whose posting date is older than this (when the board gives a date).
+max_age_days: 120
+
+# Any title matching one of these is left out.
+exclude_titles:
+  - senior
+  - sr\.?
+  - staff
+  - principal
+  - lead
+  - leader
+  - head
+  - director
+  - manager
+  - vp
+  - vice president
+  - chief
+  - professor
+  - reader
+  - chair
+  - expert
+  - III
+  - IV
+  - genetic counsell?or
+
+# Subject lists. A role goes in the first list whose keywords match its title.
+categories:
+  - slug: bioinformatics-genomics
+    name: Bioinformatics and genomics
+    keywords:
+      - bioinformatic\w*
+      - genomics?
+      - genome\w*
+      - sequencing
+      - NGS
+      - transcriptomic\w*
+      - proteomic\w*
+      - metabolomic\w*
+      - multi-?omics?
+      - single[- ]cell
+      - spatial biology
+
+  - slug: computational-biology-chemistry
+    name: Computational biology and chemistry
+    keywords:
+      - computational (biolog\w*|chemi\w*|scien\w*|immunolog\w*|patholog\w*|medicine|drug)
+      - cheminformatic\w*
+      - molecular (modell?ing|dynamics|design)
+      - (protein|drug|structure)[- ]based design
+      - protein design
+      - systems biolog\w*
+      - quantitative biolog\w*
+      - mathematical biolog\w*
+      - biophysic\w*
+
+  - slug: biostatistics
+    name: Biostatistics
+    keywords:
+      - biostatistic\w*
+      - statisticians?
+      - statistical programm\w*
+      - medical statistic\w*
+      - epidemiolog\w*
+
+  - slug: data-science-ml
+    name: Data science and ML in life sciences
+    # At employers marked `life_sciences: false` the title must also contain
+    # one of bio_context_keywords, so generic ML roles are left out.
+    needs_bio_context: true
+    keywords:
+      - data scien\w*
+      - machine learning
+      - ML (engineer|scientist|researcher)
+      - AI (engineer|scientist|researcher)
+      - deep learning
+      - clinical data
+      - health data
+
+bio_context_keywords:
+  - bio\w*
+  - life sciences?
+  - health\w*
+  - clinical
+  - medic\w*
+  - drug
+  - protein
+  - molecul\w*
+  - chemi\w*
+  - genom\w*
+
+# Roles in a subject list that also match these go in the early career list too.
+early_career_list:
+  slug: graduate-placements-internships
+  name: Graduate schemes, placements and internships
+early_career_keywords:
+  - graduate
+  - intern
+  - internship
+  - placement
+  - industrial
+  - year in industry
+  - apprentice\w*
+  - trainee
+  - studentships?
+  - PhD student
+  - summer student
+  - junior
+  - entry[- ]level
+  - early career
+
+# Workday boards hold thousands of roles, so they are searched by term.
+workday_search_terms:
+  - bioinformatics
+  - computational
+  - genomics
+  - data scientist
+  - machine learning
+  - statistician
+  - biostatistics
+  - cheminformatics
+
+# ---------------------------------------------------------------------------
+# Employers
+#
+#   ats: greenhouse       slug:  the part after boards.greenhouse.io/
+#   ats: lever            slug:  the part after jobs.lever.co/   (region: eu for jobs.eu.lever.co)
+#   ats: ashby            slug:  the part after jobs.ashbyhq.com/
+#   ats: workday          host, tenant, site from https://{host}/{site} e.g.
+#                         https://gsk.wd5.myworkdayjobs.com/GSKCareers
+#                         -> host gsk.wd5.myworkdayjobs.com, tenant gsk, site GSKCareers
+#   ats: smartrecruiters  slug:  the part after jobs.smartrecruiters.com/
+#   ats: rss              url:   any RSS feed of UK jobs
+#
+#   sponsor_names: extra legal names to look up in the Home Office register
+#   life_sciences: false for employers that are not life-science companies
+#   disabled: true to skip an employer without deleting it
+#
+# Board identifiers below are starting points: run `python -m jobsbot check`
+# and fix or disable any that return an error.
+# ---------------------------------------------------------------------------
+employers:
+  # ---- Pharma (Workday) ----
+  - name: AstraZeneca
+    ats: workday
+    host: astrazeneca.wd3.myworkdayjobs.com
+    tenant: astrazeneca
+    site: Careers
+    sponsor_names: [AstraZeneca UK Limited]
+
+  - name: GSK
+    ats: workday
+    host: gsk.wd5.myworkdayjobs.com
+    tenant: gsk
+    site: GSKCareers
+    sponsor_names: [GlaxoSmithKline Services Unlimited, GlaxoSmithKline Research & Development Limited]
+
+  - name: MSD
+    ats: workday
+    host: msd.wd5.myworkdayjobs.com
+    tenant: msd
+    site: SearchJobs
+    sponsor_names: [Merck Sharp & Dohme (UK) Limited]
+
+  - name: Pfizer
+    ats: workday
+    host: pfizer.wd1.myworkdayjobs.com
+    tenant: pfizer
+    site: PfizerCareers
+    sponsor_names: [Pfizer Limited]
+
+  - name: Johnson & Johnson
+    ats: workday
+    host: jj.wd5.myworkdayjobs.com
+    tenant: jj
+    site: JJ
+    sponsor_names: [Janssen-Cilag Limited, Johnson & Johnson Limited]
+
+  - name: Illumina
+    ats: workday
+    host: illumina.wd1.myworkdayjobs.com
+    tenant: illumina
+    site: illumina-careers
+    sponsor_names: [Illumina Cambridge Limited]
+
+  - name: Thermo Fisher Scientific
+    ats: workday
+    host: thermofisher.wd5.myworkdayjobs.com
+    tenant: thermofisher
+    site: ThermoFisherCareers
+    sponsor_names: [Life Technologies Limited, Thermo Fisher Scientific (UK) Limited]
+
+  - name: Moderna
+    ats: workday
+    host: modernatx.wd1.myworkdayjobs.com
+    tenant: modernatx
+    site: M_tx
+    sponsor_names: [ModernaTX UK Limited]
+
+  # ---- AI and biotech (Greenhouse / Lever / Ashby) ----
+  - name: Isomorphic Labs
+    ats: greenhouse
+    slug: isomorphiclabs
+
+  - name: Google DeepMind
+    ats: greenhouse
+    slug: deepmind
+    life_sciences: false
+    sponsor_names: [DeepMind Technologies Limited, Google UK Limited]
+
+  - name: Recursion
+    ats: greenhouse
+    slug: recursionpharmaceuticals
+    sponsor_names: [Exscientia AI Limited, Recursion UK Limited]
+
+  - name: Basecamp Research
+    ats: ashby
+    slug: basecampresearch
+
+  - name: Latent Labs
+    ats: ashby
+    slug: latentlabs
+
+  # ---- University and research institute jobs (RSS) ----
+  # On jobs.ac.uk run a search (e.g. "bioinformatics"), click the RSS icon on the
+  # results page and paste the feed address as `url`. One entry per search.
+  - name: jobs.ac.uk bioinformatics
+    ats: rss
+    url: https://www.jobs.ac.uk/feeds/subject-areas/biological-sciences/bioinformatics
+    company_from_title: true
+    disabled: true   # enable after pasting a working feed URL
+
+# Candidates to add once you know their board (look at the address of an
+# "apply" link on their careers page to see which ATS they use):
+#   Wellcome Sanger Institute, EMBL-EBI, Genomics England, Oxford Nanopore,
+#   Francis Crick Institute, LifeArc, Healx, BenevolentAI, Relation Therapeutics,
+#   bit.bio, Owkin, CHARM Therapeutics, UKHSA, NHS Genomic Medicine Service.
